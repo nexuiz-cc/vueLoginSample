@@ -50,7 +50,8 @@ const onFinish = () => {
   getUserData().then((res) => {
     const arr = res.data.userList
     const user = _.find(arr, { username: formState.username })
-    if (user !== undefined) {
+    const pass = _.find(arr, { username: formState.password })
+    if (user == 'username' && pass == 'password') {
       alert('login success!')
     } else {
       alert('login faild!')
