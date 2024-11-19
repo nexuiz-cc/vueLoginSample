@@ -47,6 +47,7 @@ const formState = reactive({
   remember: true,
 })
 const onFinish = () => {
+  console.log(formState)
   getUserData().then((res) => {
     const arr = res.data.userList
     const user = arr.find(
