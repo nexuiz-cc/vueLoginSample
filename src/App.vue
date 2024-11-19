@@ -51,7 +51,7 @@ const onFinish = () => {
     const arr = res.data.userList
     const user = _.find(arr, { username: formState.username })
     const pass = _.find(arr, { username: formState.password })
-    if (user == 'username' && pass == 'password') {
+    if (formState.username == user && formState.password == pass) {
       alert('login success!')
     } else {
       alert('login faild!')
