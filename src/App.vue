@@ -49,9 +49,10 @@ const formState = reactive({
 const onFinish = () => {
   getUserData().then((res) => {
     const arr = res.data.userList
-    const user = _.find(arr, { username: formState.username })
-    const pass = _.find(arr, { username: formState.password })
-    if (formState.username == user && formState.password == pass) {
+    const user = arr.find(
+      (user) => user.username === formState.username && user.password === formState.password,
+    )
+    if (user) {
       alert('login success!')
     } else {
       alert('login faild!')
