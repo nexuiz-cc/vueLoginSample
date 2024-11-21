@@ -4,13 +4,15 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "dev": "vite",
+    "dev": "vite --host",
+    "server":"json-server db.json -p 5177",
     "build": "vite build --base=/vueLoginSample/",
     "preview": "vite preview"
   },
   "dependencies": {
     "ant-design-vue": "^4.2.6",
     "axios": "^1.7.7",
+    "json-server": "^1.0.0-beta.3",
     "vue": "^3.5.12",
     "vue-router": "^4.4.5"
   },

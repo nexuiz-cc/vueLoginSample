@@ -6,7 +6,7 @@ import request from './request';
  */
 export function getUserData() {
   return request({
-    url: 'https://nexuiz-cc.github.io/expjson/user.json',
+    url: '/profile',
     method: 'GET',
   });
 }
@@ -26,10 +26,10 @@ export function getMenuData(param) {
  * メニュー項目の更新
  * @returns メニュー項目
  */
-export function setMenuData(param, data) {
+export function setUserList(data) {
   return request({
-    url: `/products/${param}`,
-    method: 'PATCH',
+    url: `/profile`,
+    method: 'POST',
     data,
   });
 }

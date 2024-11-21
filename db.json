@@ -1,0 +1,57 @@
+{
+  "posts": [
+    {
+      "id": 1,
+      "title": "Post 1"
+    },
+    {
+      "id": 2,
+      "title": "Post 2"
+    },
+    {
+      "id": 3,
+      "title": "Post 3"
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    },
+    {
+      "id": 2,
+      "body": "some comment",
+      "postId": 1
+    }
+  ],
+  "profile": [
+    {
+      "id": "user",
+      "userList": [
+        {
+          "username": "username",
+          "password": "password",
+          "role": "user",
+          "name": "Flank",
+          "tableNumber": "54"
+        },
+        {
+          "username": "admin",
+          "password": "admin",
+          "role": "admin",
+          "name": "LEON",
+          "tableNumber": "0"
+        },
+        {
+          "username": "22",
+          "password": "33",
+          "role": "user",
+          "name": "LEON",
+          "tableNumber": "0"
+        }
+      ],
+      "postId": 1
+    }
+  ]
+}

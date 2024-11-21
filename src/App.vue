@@ -35,7 +35,7 @@
             </a-form-item>
 
             <a-form-item class="item4">
-              <a-button type="primary" html-type="submit" class="signupbtn">Sign Up</a-button>
+              <a-button type="primary" class="signupbtn" @click="onSignup">Sign Up</a-button>
             </a-form-item>
           </a-form>
         </a-tab-pane>
@@ -75,9 +75,8 @@
             </a-form-item>
 
             <a-form-item class="item4">
-              <a-button type="primary"class="btn" @click="login()">Login</a-button>
+              <a-button type="primary" class="btn" @click="login()">Login</a-button>
             </a-form-item>
-
           </a-form>
         </a-tab-pane>
       </a-tabs>
@@ -88,7 +87,8 @@
 <script setup>
 import { reactive, ref } from 'vue'
 import _ from 'lodash'
-import { getUserData } from './api/api'
+import { getUserData, setUserList } from './api/api'
+import axios from 'axios'
 const activeKey = ref('1')
 const loginState = reactive({
   username: '',
@@ -99,6 +99,7 @@ const signUpState = reactive({
   username: '',
   password: '',
 })
+
 const login = () => {
   getUserData().then((res) => {
     const arr = res.data.userList
@@ -116,6 +117,25 @@ const login = () => {
 const onFinishFailed = (errorInfo) => {
   console.log('Failed:', errorInfo)
 }
+const onSignup = () => {
+  let newUser = {
+    username: signUpState.username,
+    password: signUpState.password,
+    role: 'user',
+    name: 'LEON',
+    tableNumber: '0'
+  }
+  axios.get('http://localhost:5177/profile/user').then((res) => {
+    let userList = Array.isArray(res.data.userList) ? res.data.userList : [];
+    userList.push(newUser);
+    console.log("userList:",userList);
+    axios
+      .patch('http://localhost:5177/profile/user', { userList: userList})
+      .then(() => {
+        alert('success!')
+      })
+  })
+}
 </script>
 
 <style scoped lang="css">
@@ -125,34 +145,41 @@ const onFinishFailed = (errorInfo) => {
   padding-right: 50%;
 }
 
-.parent {
-}
 .rightbox {
   margin-top: 100px;
   margin-left: 220px;
-  width: 500px;
+  width: 900px;
 }
 .btn {
-  width: 150px;
+  width: 180px;
   position: relative;
-  left: 200px;
-  top: -20px;
+  left: 330px;
+  font-size: 20px;
 }
-.signupbtn{
+.signupbtn {
   width: 150px;
   position: relative;
-  left: 200px;
-  top: 10px;
+  left: 340px;
+  top: 20px;
+  font-size: 20px;
 }
 .item1 {
-  font-size: 20px;
+  position: relative;
+  left: 200px;
+  transform: scale(1.2);
+}
+.item2 {
+  position: relative;
+  left: 200px;
+  transform: scale(1.2);
 }
 .input {
   width: 200px;
 }
 .item3 {
   position: relative;
-  right: -75px;
-  top: -20px;
+  right: -215px;
+  top: -15px;
+  transform: scale(1.2);
 }
 </style>
